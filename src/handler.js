@@ -76,6 +76,37 @@ const getAllBooks = (request, h) => {
     };
   };
 
+  if (request.query) {
+    const queryName = request.query.name;
+    const queryReading = request.query.reading;
+    const queryFinished = request.query.finished;
+    let queryBooks = books;
+
+    if (queryName) {
+      queryBooks = queryBooks.filter(
+          (book) => book.name.toLowerCase().includes(queryName.toLowerCase()));
+    }
+
+    if (queryReading) {
+      queryBooks = queryBooks.filter(
+          (book) => book.reading === (queryReading === '1' ? true : false));
+    }
+
+    if (queryFinished) {
+      queryBooks = queryBooks.filter(
+          (book) => book.finished === (queryFinished === '1' ? true : false));
+    }
+
+    const response = h.response({
+      status: 'success',
+      data: {
+        books: queryBooks.map(bookPreview),
+      },
+    });
+    response.code(200);
+    return response;
+  }
+
   if (books.length === 0) {
     const response = h.response({
       status: 'success',
