@@ -12,6 +12,7 @@ const addBookHandler = (request, h) => {
     readPage,
     reading,
   } = request.payload;
+
   const id = nanoid(16);
   const finished = (readPage === pageCount) ? true : false;
   const insertedAt = new Date().toISOString();
@@ -162,6 +163,7 @@ const editBookByIdHandler = (request, h) => {
     readPage,
     reading,
   } = request.payload;
+
   const updatedAt = new Date().toISOString();
   const index = books.findIndex((book) => book.id === id);
 
