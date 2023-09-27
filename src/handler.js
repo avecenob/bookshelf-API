@@ -170,7 +170,7 @@ const editBookByIdHandler = (request, h) => {
   if (!name) {
     const response = h.response({
       status: 'fail',
-      message: 'Gagal menambahkan buku.' +
+      message: 'Gagal memperbarui buku.' +
         ' Mohon isi nama buku',
     });
     response.code(400);
@@ -180,7 +180,7 @@ const editBookByIdHandler = (request, h) => {
   if (readPage > pageCount) {
     const response = h.response({
       status: 'fail',
-      message: 'Gagal menambahkan buku.' +
+      message: 'Gagal memperbarui buku.' +
         ' readPage tidak boleh lebih besar dari pageCount',
     });
     response.code(400);
